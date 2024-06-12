@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Pedido, Produto } from '../models/Pedido';
 import BarraProgresso from './BarraProgresso';
-import '../styles/ControlePedido.css';  // Certifique-se de que o caminho está correto
+import '../styles/ControlePedido.css';  // 
 
 const ControlePedido: React.FC = () => {
     const [pedidos, setPedidos] = useState<Pedido[]>([]);
@@ -17,7 +17,7 @@ const ControlePedido: React.FC = () => {
 
     useEffect(() => {
         // Fetch inicial dos pedidos
-        axios.get('http://localhost:3000/api/pedidos')
+        axios.get('http://localhost:2000/api/pedidos')
             .then(response => {
                 console.log('Pedidos obtidos do backend:', response.data);
                 setPedidos(response.data);
@@ -25,7 +25,7 @@ const ControlePedido: React.FC = () => {
             .catch(error => console.error('Erro ao obter pedidos:', error));
         
         // Fetch inicial dos itens
-        axios.get('http://localhost:3000/api/produtos')
+        axios.get('http://localhost:2000/api/produtos')
             .then(response => {
                 console.log('Itens obtidos do backend:', response.data);
                 setItens(response.data);
@@ -57,7 +57,7 @@ const ControlePedido: React.FC = () => {
     };
 
     const salvarProduto = (produto: Produto) => {
-        axios.put(`http://localhost:3000/api/produtos/${produto.id}`, produto)
+        axios.put(`http://localhost:2000/api/produtos/${produto.id}`, produto)
             .then(response => {
                 console.log('Produto atualizado:', response.data);
                 const itensAtualizados = itens.map(item => item.id === produto.id ? produto : item);
@@ -70,7 +70,7 @@ const ControlePedido: React.FC = () => {
         if (cliente && data && produtos.length > 0) {
             const novoPedido: Pedido = { cliente, data, produtos };
             console.log('Enviando novo pedido para o backend:', novoPedido);
-            axios.post('http://localhost:3000/api/pedidos', novoPedido)
+            axios.post('http://localhost:2000/api/pedidos', novoPedido)
                 .then(response => {
                     console.log('Pedido adicionado:', response.data);
                     setPedidos([...pedidos, response.data]);

@@ -36,6 +36,7 @@ h2, h3, h4 {
     margin-top: 20px;
 }
 
+
 .pedido-item {
     background-color: #f9f9f9;
     padding: 10px;
@@ -50,6 +51,10 @@ h2, h3, h4 {
 
 .pedido-item p {
     margin: 5px 0;
+}
+
+.pedido-item ul {
+    text-align: left;
 }
 
 .barra-progresso {
